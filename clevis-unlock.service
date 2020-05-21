@@ -1,0 +1,20 @@
+[Unit]
+Description=Clevis Unlock
+After=network.target
+Wants=network.target
+Before=cryptsetup-pre.target
+Wants=cryptsetup-pre.target
+Before=remote-fs-pre.target
+Wants=remote-fs-pre.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=false
+User=root
+Group=root
+ExecStart=/usr/sbin/clevis-unlock
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+RequiredBy=cryptsetup-pre.target
