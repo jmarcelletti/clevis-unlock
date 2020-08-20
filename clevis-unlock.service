@@ -1,11 +1,9 @@
 [Unit]
 Description=Clevis Unlock
-After=network.target
-Wants=network.target
-Before=cryptsetup-pre.target
-Wants=cryptsetup-pre.target
-Before=remote-fs-pre.target
-Wants=remote-fs-pre.target
+DefaultDependencies=no
+Before=cryptsetup-pre.target remote-fs-pre.target
+After=network-online.target
+Wants=cryptsetup-pre.target remote-fs-pre.target network-online.target
 
 [Service]
 Type=oneshot
